@@ -6,12 +6,15 @@ const bodyParser = require('body-parser');
 let app = express();
 
 app.use(bodyParser.json());
-
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    next();
+});
 
-var client = new net.Socket();
+let client = new net.Socket();
 
 app.post("/robot/forward", function(req, resp) {
     forward();
@@ -47,11 +50,9 @@ function forward() {
     client.connect(9000, '192.168.1.46', function() {
         client.write("2");
     });
-
     client.on('data', function(data) {
         client.destroy();
     });
-
     client.on('close', function() {});
 }
 
@@ -59,11 +60,9 @@ function left() {
     client.connect(9000, '192.168.1.46', function() {
         client.write("4");
     });
-
     client.on('data', function(data) {
         client.destroy();
     });
-
     client.on('close', function() {});
 }
 
@@ -71,11 +70,9 @@ function right() {
     client.connect(9000, '192.168.1.46', function() {
         client.write("6");
     });
-
     client.on('data', function(data) {
         client.destroy();
     });
-
     client.on('close', function() {});
 }
 
@@ -83,11 +80,9 @@ function back() {
     client.connect(9000, '192.168.1.46', function() {
         client.write("8");
     });
-
     client.on('data', function(data) {
         client.destroy();
     });
-
     client.on('close', function() {});
 }
 
@@ -95,10 +90,8 @@ function stop() {
     client.connect(9000, '192.168.1.46', function() {
         client.write("5");
     });
-
     client.on('data', function(data) {
         client.destroy();
     });
-
     client.on('close', function() {});
 }
