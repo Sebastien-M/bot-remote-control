@@ -73,6 +73,9 @@ function forward() {
         client.destroy();
     });
     client.on('close', function() {});
+    client.on('error', function(err) {
+        console.log(err)
+    });
 }
 
 function left() {
@@ -83,6 +86,9 @@ function left() {
         client.destroy();
     });
     client.on('close', function() {});
+    client.on('error', function(err) {
+        console.log(err)
+    });
 }
 
 function right() {
@@ -93,6 +99,9 @@ function right() {
         client.destroy();
     });
     client.on('close', function() {});
+    client.on('error', function(err) {
+        console.log(err)
+    });
 }
 
 function back() {
@@ -103,6 +112,9 @@ function back() {
         client.destroy();
     });
     client.on('close', function() {});
+    client.on('error', function(err) {
+        console.log(err)
+    });
 }
 
 function stop() {
@@ -113,4 +125,7 @@ function stop() {
         client.destroy();
     });
     client.on('close', function() {});
+    client.on('error', function(err) {
+        console.log(err)
+    });
 }
